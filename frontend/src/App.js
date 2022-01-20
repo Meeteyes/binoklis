@@ -1,5 +1,23 @@
 import React from "react";
+import InputForm from "./components/InputForm";
+import SelectDate from "./components/SelectDate";
+import cities from "./reducers/cities";
+import order from "./reducers/order";
+import { Provider } from "react-redux";
+import { configureStore, combineReducers } from "@reduxjs/toolkit";
+
+const reducer = combineReducers({
+  cities: cities.reducer,
+  order: order.reducer,
+});
+
+const store = configureStore({ reducer });
 
 export const App = () => {
-  return <div>This is the APP BINOKLIS</div>;
+  return (
+    <Provider store={store}>
+      <InputForm />
+      <SelectDate />
+    </Provider>
+  );
 };
